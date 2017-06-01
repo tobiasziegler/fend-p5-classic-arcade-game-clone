@@ -16,6 +16,7 @@
   },
   "homepage": "https://github.com/tobiasziegler/fend-p5-classic-arcade-game-clone#readme",
   "devDependencies": {
-    "grunt": "^1.0.1"
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.1.0"
   }
 }
