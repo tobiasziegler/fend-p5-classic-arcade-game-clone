@@ -14,5 +14,8 @@
   "bugs": {
     "url": "https://github.com/tobiasziegler/fend-p5-classic-arcade-game-clone/issues"
   },
-  "homepage": "https://github.com/tobiasziegler/fend-p5-classic-arcade-game-clone#readme"
+  "homepage": "https://github.com/tobiasziegler/fend-p5-classic-arcade-game-clone#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1"
+  }
 }
