@@ -1,0 +1,18 @@
+{
+  "name": "fend-p5-classic-arcade-game-clone",
+  "version": "1.0.0",
+  "description": "Project 5 (Classic Arcade Game Clone) for Udacity's Front-End Web Developer Nanodegree",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tobiasziegler/fend-p5-classic-arcade-game-clone.git"
+  },
+  "author": "David Mallard",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tobiasziegler/fend-p5-classic-arcade-game-clone/issues"
+  },
+  "homepage": "https://github.com/tobiasziegler/fend-p5-classic-arcade-game-clone#readme"
+}
