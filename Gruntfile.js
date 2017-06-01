@@ -29,9 +29,26 @@ module.exports = function(grunt) {
 					indentWithTabs: true
 				}
 			}
+		},
+		watch: {
+			js: {
+				files: [
+					'Gruntfile.js',
+					'js/**/*.js'
+				],
+				tasks: ['jshint', 'jsbeautifier']
+			},
+			other: {
+				files: [
+					'css/**/*.css',
+					'*.html'
+				],
+				tasks: ['jsbeautifier']
+			}
 		}
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-jsbeautifier');
 };
