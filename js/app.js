@@ -48,6 +48,8 @@ var Player = function() {
 	// Width and height of bounding boxes for collision detection
 	this.width = 45;
 	this.height = 45;
+	// Set the starting number of lives
+	this.lives = 3;
 };
 
 // Set or reset the player object to its initial position
@@ -62,7 +64,15 @@ Player.prototype.update = function() {
 	if (this.y < 0) {
 		this.init();
 	}
-	this.checkCollisions();
+	if (this.checkCollisions()) {
+		this.lives--;
+		if (this.lives === 0) {
+			console.log('GAME OVER!');
+			this.lives = 3;
+		} else {
+			this.init();
+		}
+	}
 };
 
 // Draw the enemy on the screen, required method for game
@@ -97,18 +107,23 @@ Player.prototype.handleInput = function(key) {
 	}
 };
 
-// Detect collisions
+// Detect collisions using an axis-aligned bounding box algorithm.
+// Returns true if a collision with any of the enemies is detected.
 Player.prototype.checkCollisions = function() {
-	allEnemies.forEach(function(enemy) {
+	var collision = allEnemies.some(function(enemy) {
 		if (
 			this.x < enemy.x + enemy.width &&
 			this.x + this.width > enemy.x &&
 			this.y < enemy.y + enemy.height &&
 			this.y + this.height > enemy.y
 		) {
-			this.init();
+			return true;
+		} else {
+			return false;
 		}
 	}, this);
+
+	return collision;
 };
 
 // Now instantiate your objects.
