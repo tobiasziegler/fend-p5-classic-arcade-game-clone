@@ -58,6 +58,10 @@ Player.prototype.reset = function() {
 
 // Update the player's position, required method for game
 Player.prototype.update = function() {
+	// Check whether the player has reached the water
+	if (this.y < 0) {
+		this.reset();
+	}
 	this.checkCollisions();
 };
 
