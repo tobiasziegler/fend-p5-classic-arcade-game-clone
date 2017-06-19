@@ -6,16 +6,16 @@ var Enemy = function(row) {
 	// The image/sprite for our enemies, this uses
 	// a helper we've provided to easily load images
 	this.sprite = 'images/enemy-bug.png';
-	this.x = 0 - Math.floor(Math.random() * 1000);
 	this.y = 65 + (row * 82);
-	this.speed = 50 + Math.floor(Math.random() * 100);
+	// Initialise the enemy's horizontal starting position and speed
+	this.init();
 	// Width and height of bounding boxes for collision detection
 	this.width = 55;
 	this.height = 35;
 };
 
-// Reset the enemy's starting position and speed
-Enemy.prototype.reset = function() {
+// Set or reset the enemy's starting position and speed
+Enemy.prototype.init = function() {
 	this.x = 0 - Math.floor(Math.random() * 1000);
 	this.speed = 50 + Math.floor(Math.random() * 100);
 };
@@ -27,7 +27,7 @@ Enemy.prototype.update = function(dt) {
 	// which will ensure the game runs at the same speed for
 	// all computers.
 	if (this.x > 500) {
-		this.reset();
+		this.init();
 	} else {
 		this.x += this.speed * dt;
 	}
@@ -43,15 +43,15 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 var Player = function() {
 	this.sprite = 'images/char-cat-girl.png';
-	this.x = 202;
-	this.y = 400;
+	// Initialise the player's position on screen
+	this.init();
 	// Width and height of bounding boxes for collision detection
 	this.width = 45;
 	this.height = 45;
 };
 
-// Reset the player to the starting position
-Player.prototype.reset = function() {
+// Set or reset the player object to its initial position
+Player.prototype.init = function() {
 	this.x = 202;
 	this.y = 400;
 };
@@ -60,7 +60,7 @@ Player.prototype.reset = function() {
 Player.prototype.update = function() {
 	// Check whether the player has reached the water
 	if (this.y < 0) {
-		this.reset();
+		this.init();
 	}
 	this.checkCollisions();
 };
@@ -106,7 +106,7 @@ Player.prototype.checkCollisions = function() {
 			this.y < enemy.y + enemy.height &&
 			this.y + this.height > enemy.y
 		) {
-			this.reset();
+			this.init();
 		}
 	}, this);
 };
