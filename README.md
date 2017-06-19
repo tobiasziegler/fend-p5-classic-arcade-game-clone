@@ -1,6 +1,28 @@
-frontend-nanodegree-arcade-game
-===============================
+# Classic Arcade Game Clone
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+This JavaScript web app is inspired by the classic arcade game, Frogger.
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+The basic game engine and art assets were supplied by Udacity, and I've built
+the game as part of the [Front-End Web Developer Nanodegree](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001).
+
+## Object of the game
+
+Get to the water without being chomped by the bugs!
+
+## Running the game
+
+You have two options for playing the game:
+
+1. Recommended: [Play the online version right now!](https://tobiasziegler.github.io/fend-p5-classic-arcade-game-clone/)
+
+1. To play offline or edit/debug the game, clone this repository (or download
+and unzip it) and then open `index.html` in your browser or load it in a
+locally-running web server.
+
+## How to play
+
+1. Move your character with the arrow keys.
+
+1. If a bug catches you, you'll be sent back to the start.
+
+1. If you reach the water, you've succeeded! You'll be reset to the start.
