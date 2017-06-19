@@ -42,7 +42,20 @@ Player.prototype.render = function() {
 
 // Respond to a key press by the player
 Player.prototype.handleInput = function(key) {
-
+	switch (key) {
+		case 'left':
+			this.x -= 101;
+			break;
+		case 'up':
+			this.y -= 82;
+			break;
+		case 'right':
+			this.x += 101;
+			break;
+		case 'down':
+			this.y += 82;
+			break;
+	}
 };
 
 // Now instantiate your objects.
