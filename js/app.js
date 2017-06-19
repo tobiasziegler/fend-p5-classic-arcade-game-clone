@@ -25,7 +25,9 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function() {
-
+	this.sprite = 'images/char-cat-girl.png';
+	this.x = 202;
+	this.y = 400;
 };
 
 // Update the player's position, required method for game
@@ -35,7 +37,7 @@ Player.prototype.update = function() {
 
 // Draw the enemy on the screen, required method for game
 Player.prototype.render = function() {
-
+	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 // Respond to a key press by the player
