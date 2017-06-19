@@ -40,20 +40,29 @@ Player.prototype.render = function() {
 	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Respond to a key press by the player
+// Respond to a key press by the player - check whether the player would move
+// beyond the game's boundaries, and if not, adjust the player's location.
 Player.prototype.handleInput = function(key) {
 	switch (key) {
 		case 'left':
-			this.x -= 101;
+			if (this.x > 0) {
+				this.x -= 101;
+			}
 			break;
 		case 'up':
-			this.y -= 82;
+			if (this.y > 0) {
+				this.y -= 82;
+			}
 			break;
 		case 'right':
-			this.x += 101;
+			if (this.x < 400) {
+				this.x += 101;
+			}
 			break;
 		case 'down':
-			this.y += 82;
+			if (this.y < 400) {
+				this.y += 82;
+			}
 			break;
 	}
 };
