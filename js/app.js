@@ -8,7 +8,7 @@ var Enemy = function(row) {
 	this.sprite = 'images/enemy-bug.png';
 	this.x = 0 - Math.floor(Math.random() * 1000);
 	this.y = 65 + (row * 82);
-	this.speed = 100;
+	this.speed = 50 + Math.floor(Math.random() * 100);
 	// Width and height of bounding boxes for collision detection
 	this.width = 55;
 	this.height = 35;
@@ -17,7 +17,7 @@ var Enemy = function(row) {
 // Reset the enemy's starting position and speed
 Enemy.prototype.reset = function() {
 	this.x = 0 - Math.floor(Math.random() * 1000);
-	this.speed = 100;
+	this.speed = 50 + Math.floor(Math.random() * 100);
 };
 
 // Update the enemy's position, required method for game
