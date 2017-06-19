@@ -115,10 +115,13 @@ Player.prototype.checkCollisions = function() {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 var allEnemies = [];
-// Add enemies to the array - one for each row between the start and end points
-for (var i = 0; i < 4; i++) {
-	allEnemies.push(new Enemy(i));
+// Add enemies to the array - two for each row between the start and end points
+for (var j = 0; j < 2; j++) {
+	for (var i = 0; i < 4; i++) {
+		allEnemies.push(new Enemy(i));
+	}
 }
+
 var player = new Player();
 
 
