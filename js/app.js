@@ -9,6 +9,9 @@ var Enemy = function(row) {
 	this.x = 0 - Math.floor(Math.random() * 1000);
 	this.y = 65 + (row * 82);
 	this.speed = 100;
+	// Width and height of bounding boxes for collision detection
+	this.width = 55;
+	this.height = 35;
 };
 
 // Reset the enemy's starting position and speed
@@ -42,11 +45,20 @@ var Player = function() {
 	this.sprite = 'images/char-cat-girl.png';
 	this.x = 202;
 	this.y = 400;
+	// Width and height of bounding boxes for collision detection
+	this.width = 45;
+	this.height = 45;
+};
+
+// Reset the player to the starting position
+Player.prototype.reset = function() {
+	this.x = 202;
+	this.y = 400;
 };
 
 // Update the player's position, required method for game
 Player.prototype.update = function() {
-
+	this.checkCollisions();
 };
 
 // Draw the enemy on the screen, required method for game
@@ -79,6 +91,20 @@ Player.prototype.handleInput = function(key) {
 			}
 			break;
 	}
+};
+
+// Detect collisions
+Player.prototype.checkCollisions = function() {
+	allEnemies.forEach(function(enemy) {
+		if (
+			this.x < enemy.x + enemy.width &&
+			this.x + this.width > enemy.x &&
+			this.y < enemy.y + enemy.height &&
+			this.y + this.height > enemy.y
+		) {
+			this.reset();
+		}
+	}, this);
 };
 
 // Now instantiate your objects.
