@@ -53,10 +53,15 @@ var Engine = (function(global) {
 		 */
 		lastTime = now;
 
-		/* Use the browser's requestAnimationFrame function to call this
-		 * function again as soon as the browser is able to draw another frame.
-		 */
-		win.requestAnimationFrame(main);
+		// Check whether the game has ended
+		if (player.gameOver) {
+			$('#gameover-dialog').dialog('open');
+		} else {
+			/* Use the browser's requestAnimationFrame function to call this
+			 * function again as soon as the browser is able to draw another frame.
+			 */
+			win.requestAnimationFrame(main);
+		}
 	}
 
 	/* This function does some initial setup that should only occur once,

@@ -51,6 +51,7 @@ var Player = function() {
 	// Set the starting score and number of lives
 	this.score = 0;
 	this.lives = 3;
+	this.gameOver = false;
 	// Initial display of the score and number of lives
 	this.displayScoreboard();
 };
@@ -72,9 +73,7 @@ Player.prototype.update = function() {
 	if (this.checkCollisions()) {
 		this.lives--;
 		if (this.lives === 0) {
-			$('#gameover-dialog').dialog('open');
-			this.score = 0;
-			this.lives = 3;
+			this.gameOver = true;
 		} else {
 			this.init();
 		}
