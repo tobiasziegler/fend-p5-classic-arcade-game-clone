@@ -109,6 +109,12 @@ Gem.prototype.calcY = function() {
 	return y;
 };
 
+// Reset the gem to a new random position
+Gem.prototype.reset = function() {
+	this.x = this.calcX();
+	this.y = this.calcY();
+};
+
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
@@ -158,6 +164,13 @@ Player.prototype.update = function() {
 	if (this.checkCollisions()) {
 		this.lives--;
 		this.reset();
+		this.displayScoreboard();
+	}
+
+	// Check whether the player has reached a gem
+	if (this.checkCollection()) {
+		this.score += 10;
+		gem.reset();
 		this.displayScoreboard();
 	}
 };
@@ -212,6 +225,21 @@ Player.prototype.checkCollisions = function() {
 	}, this);
 
 	return collision;
+};
+
+// Detect collection of gems using an axis-aligned bounding box algorithm.
+// Returns true if a collision with the gem is detected.
+Player.prototype.checkCollection = function() {
+	if (
+		this.x < gem.x + gem.width &&
+		this.x + this.width > gem.x &&
+		this.y < gem.y + gem.height &&
+		this.y + this.height > gem.y
+	) {
+		return true;
+	} else {
+		return false;
+	}
 };
 
 // Now instantiate your objects.
