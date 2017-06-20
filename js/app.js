@@ -188,21 +188,21 @@ Player.prototype.update = function() {
 	}
 
 	// Check whether the player has collided with an enemy
-	if (this.checkCollisions()) {
+	if (this.checkEnemyCollisions()) {
 		this.lives--;
 		this.reset();
 		this.displayScoreboard();
 	}
 
 	// Check whether the player has reached a gem
-	if (this.checkCollection(gem)) {
+	if (this.checkCollectableCollision(gem)) {
 		this.score += 10;
 		gem.reset();
 		this.displayScoreboard();
 	}
 
 	// Check whether the player has reached a heart
-	if (this.checkCollection(heart)) {
+	if (this.checkCollectableCollision(heart)) {
 		this.lives++;
 		heart.reset();
 		this.displayScoreboard();
@@ -242,33 +242,28 @@ Player.prototype.handleInput = function(key) {
 	}
 };
 
-// Detect collisions using an axis-aligned bounding box algorithm.
-// Returns true if a collision with any of the enemies is detected.
-Player.prototype.checkCollisions = function() {
+// Detect whether the player and any of the enemies have collided.
+Player.prototype.checkEnemyCollisions = function() {
 	var collision = allEnemies.some(function(enemy) {
-		if (
-			this.x < enemy.x + enemy.width &&
-			this.x + this.width > enemy.x &&
-			this.y < enemy.y + enemy.height &&
-			this.y + this.height > enemy.y
-		) {
-			return true;
-		} else {
-			return false;
-		}
+		return this.checkCollision(this, enemy);
 	}, this);
 
 	return collision;
 };
 
-// Detect collection of gems and hearts using an axis-aligned bounding box
-// algorithm. Returns true if a collision with a collectable is detected.
-Player.prototype.checkCollection = function(obj) {
+// Detect whether the player and a specified collectable have collided.
+Player.prototype.checkCollectableCollision = function(obj) {
+	return this.checkCollision(this, obj);
+};
+
+// Test for object collision using an axis-aligned bounding box algorithm.
+// Returns true if a collision between the two objects is detected.
+Player.prototype.checkCollision = function(obj1, obj2) {
 	if (
-		this.x < obj.x + obj.width &&
-		this.x + this.width > obj.x &&
-		this.y < obj.y + obj.height &&
-		this.y + this.height > obj.y
+		obj1.x < obj2.x + obj2.width &&
+		obj1.x + obj1.width > obj2.x &&
+		obj1.y < obj2.y + obj2.height &&
+		obj1.y + obj1.height > obj2.y
 	) {
 		return true;
 	} else {
