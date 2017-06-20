@@ -153,7 +153,5 @@ document.addEventListener('keyup', function(e) {
 		40: 'down'
 	};
 
-	if (!gamePaused) {
-		player.handleInput(allowedKeys[e.keyCode]);
-	}
+	player.handleInput(allowedKeys[e.keyCode]);
 });
