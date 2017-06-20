@@ -54,7 +54,7 @@ var Engine = (function(global) {
 		lastTime = now;
 
 		// Check whether the game has ended
-		if (player.gameOver) {
+		if (player.lives === 0) {
 			$('#gameover-dialog').dialog('open');
 		} else {
 			/* Use the browser's requestAnimationFrame function to call this
