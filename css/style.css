@@ -12,6 +12,13 @@ body {
 }
 
 
+/* Hide dialog content from appearing before JavaScript has loaded */
+
+.dialog {
+	display: none;
+}
+
+
 /* Styles for jQuery UI dialog box elements */
 
 .no-close .ui-dialog-titlebar-close {
