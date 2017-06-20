@@ -92,7 +92,7 @@ Player.prototype.render = function() {
 Player.prototype.displayScoreboard = function() {
 	document.getElementById('score').innerHTML = 'Score: ' + this.score;
 	document.getElementById('lives').innerHTML = 'Lives: ' + this.lives;
-}
+};
 
 // Respond to a key press by the player - check whether the player would move
 // beyond the game's boundaries, and if not, adjust the player's location.
