@@ -64,6 +64,10 @@ var Engine = (function(global) {
 	 * game loop.
 	 */
 	function init() {
+		// Hide all modal dialogs. Other functions will open/close them.
+		$(".dialog").dialog({
+			autoOpen: false
+		});
 		reset();
 		lastTime = Date.now();
 		main();
