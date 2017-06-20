@@ -1,6 +1,17 @@
 // A superclass to provide features common to all entities involved in the game
-var Entity = function() {
+var Entity = function(sprite, x, y, width, height) {
+	// Variables applied to each of our instances go here,
+	// we've provided one for you to get started
 
+	// The image/sprite for our enemies, this uses
+	// a helper we've provided to easily load images
+	this.sprite = sprite;
+	// Coordinates for the entity's location in the game
+	this.x = x;
+	this.y = y;
+	// Width and height of bounding boxes for collision detection
+	this.width = width;
+	this.height = height;
 };
 
 // Draw the entity on the screen, required method for game
@@ -10,28 +21,46 @@ Entity.prototype.render = function() {
 
 // Enemies our player must avoid
 var Enemy = function(row) {
-	// Variables applied to each of our instances go here,
-	// we've provided one for you to get started
+	// Set the initial values through the Entity constructor
+	Entity.call(
+		this,
+		'images/enemy-bug.png',
+		this.calcX(),
+		this.calcY(row),
+		55,
+		35
+	);
 
-	// The image/sprite for our enemies, this uses
-	// a helper we've provided to easily load images
-	this.sprite = 'images/enemy-bug.png';
-	this.y = 65 + (row * 82);
-	// Initialise the enemy's horizontal starting position and speed
-	this.init();
-	// Width and height of bounding boxes for collision detection
-	this.width = 55;
-	this.height = 35;
+	// Set the speed of the enemy's horizontal movement
+	this.speed = this.calcSpeed();
 };
 
 // Enemy is a subclass of the Entity superclass
 Enemy.prototype = Object.create(Entity.prototype);
 Enemy.prototype.constructor = Enemy;
 
-// Set or reset the enemy's starting position and speed
-Enemy.prototype.init = function() {
-	this.x = 0 - Math.floor(Math.random() * 1000);
-	this.speed = 50 + Math.floor(Math.random() * 100);
+// Calculate a random off-screen starting position
+Enemy.prototype.calcX = function() {
+	var x = this.x = 0 - Math.floor(Math.random() * 1000);
+	return x;
+};
+
+// Calculate y coordinate based on which row the Enemy is assigned to
+Enemy.prototype.calcY = function(row) {
+	var y = 65 + (row * 82);
+	return y;
+};
+
+// Calculate a random speed for the Enemy's movement
+Enemy.prototype.calcSpeed = function() {
+	var speed = 50 + Math.floor(Math.random() * 100);
+	return speed;
+};
+
+// Reset the enemy's starting position and speed
+Enemy.prototype.reset = function() {
+	this.x = this.calcX();
+	this.speed = this.calcSpeed();
 };
 
 // Update the enemy's position, required method for game
@@ -40,8 +69,10 @@ Enemy.prototype.update = function(dt) {
 	// You should multiply any movement by the dt parameter
 	// which will ensure the game runs at the same speed for
 	// all computers.
+
+	// If the Enemy has moved off-screen, reset position and speed
 	if (this.x > 500) {
-		this.init();
+		this.reset();
 	} else {
 		this.x += this.speed * dt;
 	}
