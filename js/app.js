@@ -1,3 +1,8 @@
+// A superclass to provide features common to all entities involved in the game
+var Entity = function() {
+
+};
+
 // Enemies our player must avoid
 var Enemy = function(row) {
 	// Variables applied to each of our instances go here,
@@ -13,6 +18,10 @@ var Enemy = function(row) {
 	this.width = 55;
 	this.height = 35;
 };
+
+// Enemy is a subclass of the Entity superclass
+Enemy.prototype = Object.create(Entity.prototype);
+Enemy.prototype.constructor = Enemy;
 
 // Set or reset the enemy's starting position and speed
 Enemy.prototype.init = function() {
@@ -54,6 +63,10 @@ var Player = function() {
 	// Initial display of the score and number of lives
 	this.displayScoreboard();
 };
+
+// Player is a subclass of the Entity superclass
+Player.prototype = Object.create(Entity.prototype);
+Player.prototype.constructor = Player;
 
 // Set or reset the player object to its initial position
 Player.prototype.init = function() {
