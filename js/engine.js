@@ -169,6 +169,11 @@ var Engine = (function(global) {
 	 * those sorts of things. It's only called once by the init() method.
 	 */
 	function reset() {
+		initDialogs();
+		if (gamePaused) {
+			$('#start-dialog').dialog('open');
+		}
+
 		player = new Player();
 		// Clear the enemies array and add fresh enemies - two for each row
 		// between the start and end points
@@ -178,7 +183,6 @@ var Engine = (function(global) {
 				allEnemies.push(new Enemy(i));
 			}
 		}
-		initDialogs();
 	}
 
 	/* This function initialises dialog boxes that can be displayed by the
@@ -188,6 +192,20 @@ var Engine = (function(global) {
 		// Hide all modal dialogs. Other functions will open/close them.
 		$('.dialog').dialog({
 			autoOpen: false
+		});
+
+		// Configure the character selection dialog
+		$('#start-dialog').dialog({
+			dialogClass: 'no-close',
+			buttons: [{
+				text: 'Begin the Game',
+				click: function() {
+					$(this).dialog('close');
+					gamePaused = false;
+					init();
+				}
+			}],
+			modal: true
 		});
 
 		// Configure the Game Over dialog
