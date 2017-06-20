@@ -118,7 +118,7 @@ Collectable.prototype.reset = function() {
 
 // Gems that provide a score bonus when collected
 var Gem = function() {
-	// Set the initial values through the Entity constructor
+	// Set the initial values through the Collectable and Entity constructors
 	Collectable.call(
 		this,
 		'images/Gem Blue.png'
@@ -128,6 +128,19 @@ var Gem = function() {
 // Gem is a subclass of the Collectable superclass
 Gem.prototype = Object.create(Collectable.prototype);
 Gem.prototype.constructor = Gem;
+
+// Hearts that provide an extra life when collected
+var Heart = function() {
+	// Set the initial values through the Collectable and Entity constructors
+	Collectable.call(
+		this,
+		'images/Heart.png'
+	);
+};
+
+// Heart is a subclass of the Collectable superclass
+Heart.prototype = Object.create(Collectable.prototype);
+Heart.prototype.constructor = Heart;
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -182,9 +195,16 @@ Player.prototype.update = function() {
 	}
 
 	// Check whether the player has reached a gem
-	if (this.checkCollection()) {
+	if (this.checkCollection(gem)) {
 		this.score += 10;
 		gem.reset();
+		this.displayScoreboard();
+	}
+
+	// Check whether the player has reached a heart
+	if (this.checkCollection(heart)) {
+		this.lives++;
+		heart.reset();
 		this.displayScoreboard();
 	}
 };
@@ -241,14 +261,14 @@ Player.prototype.checkCollisions = function() {
 	return collision;
 };
 
-// Detect collection of gems using an axis-aligned bounding box algorithm.
-// Returns true if a collision with the gem is detected.
-Player.prototype.checkCollection = function() {
+// Detect collection of gems and hearts using an axis-aligned bounding box
+// algorithm. Returns true if a collision with a collectable is detected.
+Player.prototype.checkCollection = function(obj) {
 	if (
-		this.x < gem.x + gem.width &&
-		this.x + this.width > gem.x &&
-		this.y < gem.y + gem.height &&
-		this.y + this.height > gem.y
+		this.x < obj.x + obj.width &&
+		this.x + this.width > obj.x &&
+		this.y < obj.y + obj.height &&
+		this.y + this.height > obj.y
 	) {
 		return true;
 	} else {
@@ -263,6 +283,7 @@ Player.prototype.checkCollection = function() {
 // Objects are inserted into these variables in the reset() function (engine.js)
 var allEnemies;
 var gem;
+var heart;
 var player;
 
 

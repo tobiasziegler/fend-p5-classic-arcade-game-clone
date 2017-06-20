@@ -162,6 +162,7 @@ var Engine = (function(global) {
 		});
 
 		gem.render();
+		heart.render();
 
 		player.render();
 	}
@@ -178,6 +179,7 @@ var Engine = (function(global) {
 
 		player = new Player();
 		gem = new Gem();
+		heart = new Heart();
 
 		// Clear the enemies array and add fresh enemies - two for each row
 		// between the start and end points
@@ -236,7 +238,8 @@ var Engine = (function(global) {
 		'images/grass-block.png',
 		'images/enemy-bug.png',
 		'images/char-cat-girl.png',
-		'images/Gem Blue.png'
+		'images/Gem Blue.png',
+		'images/Heart.png'
 	]);
 	Resources.onReady(init);
 
