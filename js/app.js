@@ -72,7 +72,7 @@ Player.prototype.update = function() {
 	if (this.checkCollisions()) {
 		this.lives--;
 		if (this.lives === 0) {
-			console.log('GAME OVER!');
+			$('#gameover-dialog').dialog('open');
 			this.score = 0;
 			this.lives = 3;
 		} else {
