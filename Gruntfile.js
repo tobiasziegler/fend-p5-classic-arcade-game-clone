@@ -5,13 +5,15 @@ module.exports = function(grunt) {
 		jshint: {
 			all: [
 				'Gruntfile.js',
-				'js/**/*.js'
+				'js/**/*.js',
+				'!js/vendor/*.js'
 			]
 		},
 		jsbeautifier: {
 			files: [
 				'Gruntfile.js',
 				'js/**/*.js',
+				'!js/vendor/*.js',
 				'css/**/*.css',
 				'*.html'
 			],

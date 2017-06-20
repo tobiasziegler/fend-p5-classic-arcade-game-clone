@@ -13,6 +13,13 @@
 		<div id="score"></div>
 		<div id="lives"></div>
 	</header>
+	<!-- Download scripts from CDN with local fallback.
+	Based on HTML5 Boilerplate v5.3.0: https://html5boilerplate.com/ -->
+	<script src="//code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+	<script>
+		window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js" type="text/javascript"<script>');
+
+	</script>
 	<script src="js/resources.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/engine.js"></script>
