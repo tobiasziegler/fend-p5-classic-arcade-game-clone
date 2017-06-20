@@ -10,3 +10,10 @@ body {
 	margin: 0 auto;
 	width: 505px;
 }
+
+
+/* Styles for jQuery UI dialog box elements */
+
+.no-close .ui-dialog-titlebar-close {
+	display: none;
+}

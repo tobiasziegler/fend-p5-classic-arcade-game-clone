@@ -69,10 +69,6 @@ var Engine = (function(global) {
 	 * game loop.
 	 */
 	function init() {
-		// Hide all modal dialogs. Other functions will open/close them.
-		$(".dialog").dialog({
-			autoOpen: false
-		});
 		reset();
 		lastTime = Date.now();
 		main();
@@ -168,7 +164,31 @@ var Engine = (function(global) {
 	 * those sorts of things. It's only called once by the init() method.
 	 */
 	function reset() {
-		// noop
+		player = new Player();
+		initDialogs();
+	}
+
+	/* This function initialises dialog boxes that can be displayed by the
+	 * game.
+	 */
+	function initDialogs() {
+		// Hide all modal dialogs. Other functions will open/close them.
+		$('.dialog').dialog({
+			autoOpen: false
+		});
+
+		// Configure the Game Over dialog
+		$('#gameover-dialog').dialog({
+			dialogClass: 'no-close',
+			buttons: [{
+				text: 'Restart',
+				click: function() {
+					$(this).dialog('close');
+					init();
+				}
+			}],
+			modal: true
+		});
 	}
 
 	/* Go ahead and load all of the images we know we're going to need to

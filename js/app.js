@@ -150,7 +150,7 @@ for (var j = 0; j < 2; j++) {
 	}
 }
 
-var player = new Player();
+var player;
 
 
 // This listens for key presses and sends the keys to your
