@@ -3,6 +3,11 @@ var Entity = function() {
 
 };
 
+// Draw the entity on the screen, required method for game
+Entity.prototype.render = function() {
+	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
 // Enemies our player must avoid
 var Enemy = function(row) {
 	// Variables applied to each of our instances go here,
@@ -40,11 +45,6 @@ Enemy.prototype.update = function(dt) {
 	} else {
 		this.x += this.speed * dt;
 	}
-};
-
-// Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
-	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 // Now write your own player class
@@ -88,11 +88,6 @@ Player.prototype.update = function() {
 		// Update the display
 		this.displayScoreboard();
 	}
-};
-
-// Draw the enemy on the screen, required method for game
-Player.prototype.render = function() {
-	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 // Update the on-screen display of score and lives left
