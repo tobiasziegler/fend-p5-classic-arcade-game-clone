@@ -82,15 +82,24 @@ Enemy.prototype.update = function(dt) {
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function() {
-	this.sprite = 'images/char-cat-girl.png';
-	// Initialise the player's position on screen
-	this.init();
-	// Width and height of bounding boxes for collision detection
-	this.width = 45;
-	this.height = 45;
+	// Define properties for the starting x and y positions
+	this.startX = 202;
+	this.startY = 400;
+
+	// Set the initial values through the Entity constructor
+	Entity.call(
+		this,
+		'images/char-cat-girl.png',
+		this.startX,
+		this.startY,
+		45,
+		45
+	);
+
 	// Set the starting score and number of lives
 	this.score = 0;
 	this.lives = 3;
+
 	// Initial display of the score and number of lives
 	this.displayScoreboard();
 };
@@ -99,10 +108,10 @@ var Player = function() {
 Player.prototype = Object.create(Entity.prototype);
 Player.prototype.constructor = Player;
 
-// Set or reset the player object to its initial position
-Player.prototype.init = function() {
-	this.x = 202;
-	this.y = 400;
+// Reset the player object to its initial position
+Player.prototype.reset = function() {
+	this.x = this.startX;
+	this.y = this.startY;
 };
 
 // Update the player's position, required method for game
@@ -110,13 +119,14 @@ Player.prototype.update = function() {
 	// Check whether the player has reached the water
 	if (this.y < 0) {
 		this.score += 100;
-		this.init();
+		this.reset();
 		this.displayScoreboard();
 	}
+
+	// Check whether the player has collided with an enemy
 	if (this.checkCollisions()) {
 		this.lives--;
-		this.init();
-		// Update the display
+		this.reset();
 		this.displayScoreboard();
 	}
 };
