@@ -50,6 +50,8 @@ var Player = function() {
 	this.height = 45;
 	// Set the starting number of lives
 	this.lives = 3;
+	// Initial display of the number of lives
+	this.displayLives();
 };
 
 // Set or reset the player object to its initial position
@@ -72,6 +74,8 @@ Player.prototype.update = function() {
 		} else {
 			this.init();
 		}
+		// Update the display
+		this.displayLives();
 	}
 };
 
@@ -79,6 +83,11 @@ Player.prototype.update = function() {
 Player.prototype.render = function() {
 	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+
+// Update the on-screen display of lives left
+Player.prototype.displayLives = function() {
+	document.getElementById('lives').innerHTML = 'Lives: ' + this.lives;
+}
 
 // Respond to a key press by the player - check whether the player would move
 // beyond the game's boundaries, and if not, adjust the player's location.
