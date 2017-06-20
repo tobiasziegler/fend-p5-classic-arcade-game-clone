@@ -142,14 +142,9 @@ Player.prototype.checkCollisions = function() {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var allEnemies = [];
-// Add enemies to the array - two for each row between the start and end points
-for (var j = 0; j < 2; j++) {
-	for (var i = 0; i < 4; i++) {
-		allEnemies.push(new Enemy(i));
-	}
-}
 
+// Objects are inserted into these variables in the reset() function (engine.js)
+var allEnemies;
 var player;
 
 

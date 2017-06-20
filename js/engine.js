@@ -165,6 +165,14 @@ var Engine = (function(global) {
 	 */
 	function reset() {
 		player = new Player();
+		// Clear the enemies array and add fresh enemies - two for each row
+		// between the start and end points
+		allEnemies = [];
+		for (var j = 0; j < 2; j++) {
+			for (var i = 0; i < 4; i++) {
+				allEnemies.push(new Enemy(i));
+			}
+		}
 		initDialogs();
 	}
 
