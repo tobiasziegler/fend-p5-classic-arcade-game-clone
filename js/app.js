@@ -78,6 +78,37 @@ Enemy.prototype.update = function(dt) {
 	}
 };
 
+// Gems that provide a score bonus when collected
+var Gem = function() {
+	// Set the initial values through the Entity constructor
+	Entity.call(
+		this,
+		'images/Gem Blue.png',
+		this.calcX(),
+		this.calcY(),
+		45,
+		45
+	);
+};
+
+// Enemy is a subclass of the Entity superclass
+Gem.prototype = Object.create(Entity.prototype);
+Gem.prototype.constructor = Gem;
+
+// Calculate a random column position for the gem
+Gem.prototype.calcX = function() {
+	var col = Math.floor(Math.random() * 5);
+	var x = 0 + (col * 101);
+	return x;
+};
+
+// Calculate a random row position for the gem
+Gem.prototype.calcY = function() {
+	var row = Math.floor(Math.random() * 4);
+	var y = 65 + (row * 82);
+	return y;
+};
+
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
@@ -189,6 +220,7 @@ Player.prototype.checkCollisions = function() {
 
 // Objects are inserted into these variables in the reset() function (engine.js)
 var allEnemies;
+var gem;
 var player;
 
 
