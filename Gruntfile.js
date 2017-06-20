@@ -37,13 +37,15 @@ module.exports = function(grunt) {
 			js: {
 				files: [
 					'Gruntfile.js',
-					'js/**/*.js'
+					'js/**/*.js',
+					'!js/vendor/*.js'
 				],
 				tasks: ['jshint', 'jsbeautifier']
 			},
 			other: {
 				files: [
 					'css/**/*.css',
+					'!css/vendor/*.css',
 					'*.html'
 				],
 				tasks: ['jsbeautifier']
