@@ -90,8 +90,8 @@ Player.prototype.render = function() {
 
 // Update the on-screen display of score and lives left
 Player.prototype.displayScoreboard = function() {
-	document.getElementById('score').innerHTML = 'Score: ' + this.score;
-	document.getElementById('lives').innerHTML = 'Lives: ' + this.lives;
+	$('#score').html('Score: ' + this.score);
+	$('#lives').html('Lives: ' + this.lives);
 };
 
 // Respond to a key press by the player - check whether the player would move
