@@ -15,6 +15,7 @@ module.exports = function(grunt) {
 				'js/**/*.js',
 				'!js/vendor/*.js',
 				'css/**/*.css',
+				'!css/vendor/*.css',
 				'*.html'
 			],
 			options: {
