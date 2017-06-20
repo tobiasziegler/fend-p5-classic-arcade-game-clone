@@ -79,11 +79,11 @@ Enemy.prototype.update = function(dt) {
 };
 
 // Gems that provide a score bonus when collected
-var Gem = function() {
+var Collectable = function(sprite) {
 	// Set the initial values through the Entity constructor
 	Entity.call(
 		this,
-		'images/Gem Blue.png',
+		sprite,
 		this.calcX(),
 		this.calcY(),
 		45,
@@ -91,29 +91,43 @@ var Gem = function() {
 	);
 };
 
-// Enemy is a subclass of the Entity superclass
-Gem.prototype = Object.create(Entity.prototype);
-Gem.prototype.constructor = Gem;
+// Collectable is a subclass of the Entity superclass
+// It is the superclass for collectable bonus items in the game
+Collectable.prototype = Object.create(Entity.prototype);
+Collectable.prototype.constructor = Collectable;
 
 // Calculate a random column position for the gem
-Gem.prototype.calcX = function() {
+Collectable.prototype.calcX = function() {
 	var col = Math.floor(Math.random() * 5);
 	var x = 0 + (col * 101);
 	return x;
 };
 
 // Calculate a random row position for the gem
-Gem.prototype.calcY = function() {
+Collectable.prototype.calcY = function() {
 	var row = Math.floor(Math.random() * 4);
 	var y = 65 + (row * 82);
 	return y;
 };
 
 // Reset the gem to a new random position
-Gem.prototype.reset = function() {
+Collectable.prototype.reset = function() {
 	this.x = this.calcX();
 	this.y = this.calcY();
 };
+
+// Gems that provide a score bonus when collected
+var Gem = function() {
+	// Set the initial values through the Entity constructor
+	Collectable.call(
+		this,
+		'images/Gem Blue.png'
+	);
+};
+
+// Gem is a subclass of the Collectable superclass
+Gem.prototype = Object.create(Collectable.prototype);
+Gem.prototype.constructor = Gem;
 
 // Now write your own player class
 // This class requires an update(), render() and
