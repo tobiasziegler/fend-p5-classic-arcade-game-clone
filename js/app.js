@@ -48,10 +48,11 @@ var Player = function() {
 	// Width and height of bounding boxes for collision detection
 	this.width = 45;
 	this.height = 45;
-	// Set the starting number of lives
+	// Set the starting score and number of lives
+	this.score = 0;
 	this.lives = 3;
-	// Initial display of the number of lives
-	this.displayLives();
+	// Initial display of the score and number of lives
+	this.displayScoreboard();
 };
 
 // Set or reset the player object to its initial position
@@ -64,18 +65,21 @@ Player.prototype.init = function() {
 Player.prototype.update = function() {
 	// Check whether the player has reached the water
 	if (this.y < 0) {
+		this.score += 100;
 		this.init();
+		this.displayScoreboard();
 	}
 	if (this.checkCollisions()) {
 		this.lives--;
 		if (this.lives === 0) {
 			console.log('GAME OVER!');
+			this.score = 0;
 			this.lives = 3;
 		} else {
 			this.init();
 		}
 		// Update the display
-		this.displayLives();
+		this.displayScoreboard();
 	}
 };
 
@@ -84,8 +88,9 @@ Player.prototype.render = function() {
 	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Update the on-screen display of lives left
-Player.prototype.displayLives = function() {
+// Update the on-screen display of score and lives left
+Player.prototype.displayScoreboard = function() {
+	document.getElementById('score').innerHTML = 'Score: ' + this.score;
 	document.getElementById('lives').innerHTML = 'Lives: ' + this.lives;
 }
 
