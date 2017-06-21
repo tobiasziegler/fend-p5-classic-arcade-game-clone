@@ -188,7 +188,7 @@ Player.prototype.update = function() {
 	}
 
 	// Check whether the player has collided with an enemy
-	if (this.checkEnemyCollisions()) {
+	if (this.checkCollisions(allEnemies)) {
 		this.lives--;
 		this.reset();
 		this.displayScoreboard();
@@ -242,13 +242,15 @@ Player.prototype.handleInput = function(key) {
 	}
 };
 
-// Detect whether the player and any of the enemies have collided.
-Player.prototype.checkEnemyCollisions = function() {
-	var collision = allEnemies.some(function(enemy) {
-		return this.checkCollision(this, enemy);
-	}, this);
-
-	return collision;
+// Detect whether the player and any of the objects in an array have collided.
+// Returns the object if there has been a collision, or false otherwise.
+Player.prototype.checkCollisions = function(objs) {
+	for (i = 0; i < objs.length; i++) {
+		if (this.checkCollision(this, objs[i])) {
+			return objs[i];
+		}
+	}
+	return false;
 };
 
 // Detect whether the player and a specified collectable have collided.
@@ -265,7 +267,7 @@ Player.prototype.checkCollision = function(obj1, obj2) {
 		obj1.y < obj2.y + obj2.height &&
 		obj1.y + obj1.height > obj2.y
 	) {
-		return true;
+		return obj2;
 	} else {
 		return false;
 	}
