@@ -308,8 +308,8 @@ Player.prototype.handleInput = function(key) {
 // Place the player object in a variable called player
 
 // Objects are inserted into these variables in the reset() function (engine.js)
-var allEnemies;
-var allCollectables;
+var allEnemies = [];
+var allCollectables = [];
 var player;
 
 

@@ -243,7 +243,7 @@ var Engine = (function(global) {
 
 		// Clear the enemies array and add fresh enemies - two for each row
 		// between the start and end points
-		allEnemies = [];
+		allEnemies.length = 0;
 		for (var j = 0; j < 2; j++) {
 			for (var i = 0; i < 4; i++) {
 				allEnemies.push(new Enemy(i));
@@ -251,7 +251,7 @@ var Engine = (function(global) {
 		}
 
 		// Clear the collectables array and add fresh items
-		allCollectables = [];
+		allCollectables.length = 0;
 		allCollectables.push(new Gem());
 		allCollectables.push(new SuperGem());
 		allCollectables.push(new HyperGem());
