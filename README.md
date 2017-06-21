@@ -26,3 +26,13 @@ locally-running web server.
 1. If a bug catches you, you'll be sent back to the start.
 
 1. If you reach the water, you've succeeded! You'll be reset to the start.
+
+1. Bonus items will appear - grab them before a bug does!
+
+	1. Blue gems - bonus points
+
+	1. Green gems - super bonus points!
+
+	1. Orange gems - hyper bonus points!!
+
+	1. Heart - an extra life!!!
