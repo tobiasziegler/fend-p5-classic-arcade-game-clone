@@ -80,7 +80,7 @@ Enemy.prototype.update = function(dt) {
 
 // Gems that provide a score bonus when collected
 var Collectable = function(sprite) {
-	this.active = true;
+	this.active = false;
 	// Set the initial values through the Entity constructor
 	Entity.call(
 		this,
@@ -131,7 +131,7 @@ Collectable.prototype.reset = function(active) {
 
 // This function is called when the object is collected by the player
 Collectable.prototype.collect = function() {
-	this.reset(true);
+	this.reset(false);
 };
 
 // Gems that provide a score bonus when collected
@@ -150,7 +150,7 @@ Gem.prototype.constructor = Gem;
 // This function is called when a gem is collected
 Gem.prototype.collect = function() {
 	player.score += 10;
-	this.reset(true);
+	this.reset(false);
 };
 
 // Hearts that provide an extra life when collected
@@ -169,7 +169,7 @@ Heart.prototype.constructor = Heart;
 // This function is called when a heart is collected
 Heart.prototype.collect = function() {
 	player.lives++;
-	this.reset(true);
+	this.reset(false);
 };
 
 // Now write your own player class
