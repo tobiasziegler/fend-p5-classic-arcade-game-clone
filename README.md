@@ -38,3 +38,24 @@ locally-running web server.
 	1. Heart - an extra life!!!
 
 	1. Star - clear away the bugs
+
+## Development and Contributing
+
+1. Fork and/or clone the repository.
+
+1. Run `npm install` to set up development dependencies.
+
+1. Use Grunt tasks:
+
+	1. `grunt` will lint JavaScript code and identify errors and potential
+	problems, and beautify the HTML, CSS and JavaScript files. Or use
+	`grunt jshint` to lint and `grunt jsbeautifier` to beautify.
+
+	1. `grunt watch` will monitor files for changes and run the linter and/or
+	beautifier.
+
+1. Submit a pull request if you have a bug fix, or raise an issue to discuss
+potential improvements or changes to gameplay.
+
+Note that the base code for this project is available from [this Udacity GitHub
+repository.](https://github.com/udacity/frontend-nanodegree-arcade-game)
