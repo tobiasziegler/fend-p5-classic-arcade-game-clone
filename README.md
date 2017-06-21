@@ -29,10 +29,12 @@ locally-running web server.
 
 1. Bonus items will appear - grab them before a bug does!
 
-	1. Blue gems - bonus points
+	1. Blue gem - bonus points
 
-	1. Green gems - super bonus points!
+	1. Green gem - super bonus points!
 
-	1. Orange gems - hyper bonus points!!
+	1. Orange gem - hyper bonus points!!
 
 	1. Heart - an extra life!!!
+
+	1. Star - clear away the bugs
