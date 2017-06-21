@@ -105,6 +105,14 @@ var Engine = (function(global) {
 			enemy.update(dt);
 		});
 		player.update();
+
+		// If there is no active collectable item, select one to be active
+		if (!allCollectables.some(function(collectable) {
+				return collectable.active;
+			})) {
+			var item = Math.floor(Math.random() * allCollectables.length);
+			allCollectables[item].reset(true);
+		}
 	}
 
 	/* This function initially draws the "game level", it will then call
@@ -165,7 +173,6 @@ var Engine = (function(global) {
 		allCollectables.forEach(function(collectable) {
 			collectable.render();
 		});
-
 
 		player.render();
 	}
