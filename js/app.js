@@ -312,6 +312,12 @@ var allEnemies = [];
 var allCollectables = [];
 var player;
 
+// Game configuration variables - changing these will modify the gameplay
+// Modify the proportion/likelihood of each collectable appearing
+var numHearts = 1;
+var numGems = 6;
+var numSuperGems = 2;
+var numHyperGems = 1;
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.

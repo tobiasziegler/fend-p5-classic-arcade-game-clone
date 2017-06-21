@@ -252,10 +252,29 @@ var Engine = (function(global) {
 
 		// Clear the collectables array and add fresh items
 		allCollectables.length = 0;
-		allCollectables.push(new Gem());
-		allCollectables.push(new SuperGem());
-		allCollectables.push(new HyperGem());
-		allCollectables.push(new Heart());
+		initCollectables('gem', numGems);
+		initCollectables('supergem', numSuperGems);
+		initCollectables('hypergem', numHyperGems);
+		initCollectables('heart', numHearts);
+	}
+
+	function initCollectables(obj, num) {
+		for (var i = 0; i < num; i++) {
+			switch (obj) {
+				case 'gem':
+					allCollectables.push(new Gem());
+					break;
+				case 'supergem':
+					allCollectables.push(new SuperGem());
+					break;
+				case 'hypergem':
+					allCollectables.push(new HyperGem());
+					break;
+				case 'heart':
+					allCollectables.push(new Heart());
+					break;
+			}
+		}
 	}
 
 	/* This function initialises dialog boxes that can be displayed by the
