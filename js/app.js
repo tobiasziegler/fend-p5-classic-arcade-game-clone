@@ -155,7 +155,7 @@ Gem.prototype.constructor = Gem;
 
 // This function is called when a gem is collected
 Gem.prototype.collect = function() {
-	player.score += 10;
+	player.score += 1;
 	this.reset(false);
 };
 
@@ -175,7 +175,7 @@ SuperGem.prototype.constructor = SuperGem;
 
 // This function is called when a super gem is collected
 SuperGem.prototype.collect = function() {
-	player.score += 50;
+	player.score += 5;
 	this.reset(false);
 };
 
@@ -195,7 +195,7 @@ HyperGem.prototype.constructor = HyperGem;
 
 // This function is called when a super gem is collected
 HyperGem.prototype.collect = function() {
-	player.score += 100;
+	player.score += 10;
 	this.reset(false);
 };
 
@@ -258,7 +258,7 @@ Player.prototype.reset = function() {
 Player.prototype.update = function() {
 	// Check whether the player has reached the water
 	if (this.y < 0) {
-		this.score += 100;
+		this.score += 10;
 		this.reset();
 		this.displayScoreboard();
 	}
