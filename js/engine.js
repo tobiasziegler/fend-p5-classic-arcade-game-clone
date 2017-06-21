@@ -161,8 +161,11 @@ var Engine = (function(global) {
 			enemy.render();
 		});
 
-		gem.render();
-		heart.render();
+		// Render all of the objects within the allCollectables array.
+		allCollectables.forEach(function(collectable) {
+			collectable.render();
+		});
+
 
 		player.render();
 	}
@@ -178,8 +181,6 @@ var Engine = (function(global) {
 		}
 
 		player = new Player();
-		gem = new Gem();
-		heart = new Heart();
 
 		// Clear the enemies array and add fresh enemies - two for each row
 		// between the start and end points
@@ -189,6 +190,11 @@ var Engine = (function(global) {
 				allEnemies.push(new Enemy(i));
 			}
 		}
+
+		// Clear the collectables array and add fresh items
+		allCollectables = [];
+		allCollectables.push(new Gem());
+		allCollectables.push(new Heart());
 	}
 
 	/* This function initialises dialog boxes that can be displayed by the

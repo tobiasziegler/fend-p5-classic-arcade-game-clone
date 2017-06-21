@@ -116,6 +116,11 @@ Collectable.prototype.reset = function() {
 	this.y = this.calcY();
 };
 
+// This function is called when the object is collected by the player
+Collectable.prototype.collect = function() {
+	this.reset();
+};
+
 // Gems that provide a score bonus when collected
 var Gem = function() {
 	// Set the initial values through the Collectable and Entity constructors
@@ -129,6 +134,12 @@ var Gem = function() {
 Gem.prototype = Object.create(Collectable.prototype);
 Gem.prototype.constructor = Gem;
 
+// This function is called when a gem is collected
+Gem.prototype.collect = function() {
+	player.score += 10;
+	this.reset();
+};
+
 // Hearts that provide an extra life when collected
 var Heart = function() {
 	// Set the initial values through the Collectable and Entity constructors
@@ -141,6 +152,12 @@ var Heart = function() {
 // Heart is a subclass of the Collectable superclass
 Heart.prototype = Object.create(Collectable.prototype);
 Heart.prototype.constructor = Heart;
+
+// This function is called when a heart is collected
+Heart.prototype.collect = function() {
+	player.lives++;
+	this.reset();
+};
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -180,6 +197,8 @@ Player.prototype.reset = function() {
 
 // Update the player's position, required method for game
 Player.prototype.update = function() {
+	var collectable;
+
 	// Check whether the player has reached the water
 	if (this.y < 0) {
 		this.score += 100;
@@ -194,17 +213,11 @@ Player.prototype.update = function() {
 		this.displayScoreboard();
 	}
 
-	// Check whether the player has reached a gem
-	if (this.checkCollectableCollision(gem)) {
-		this.score += 10;
-		gem.reset();
-		this.displayScoreboard();
-	}
+	// Check whether the player has reached a collectable
+	collectable = this.checkCollisions(allCollectables);
 
-	// Check whether the player has reached a heart
-	if (this.checkCollectableCollision(heart)) {
-		this.lives++;
-		heart.reset();
+	if (collectable) {
+		collectable.collect();
 		this.displayScoreboard();
 	}
 };
@@ -279,8 +292,7 @@ Player.prototype.checkCollision = function(obj1, obj2) {
 
 // Objects are inserted into these variables in the reset() function (engine.js)
 var allEnemies;
-var gem;
-var heart;
+var allCollectables;
 var player;
 
 
