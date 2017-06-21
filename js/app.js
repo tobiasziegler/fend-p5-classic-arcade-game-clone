@@ -218,6 +218,27 @@ Heart.prototype.collect = function() {
 	this.reset(false);
 };
 
+// Stars that wipe out (reset) all of the bugs
+var Star = function() {
+	// Set the initial values through the Collectable and Entity constructors
+	Collectable.call(
+		this,
+		'images/Star.png'
+	);
+};
+
+// Star is a subclass of the Collectable superclass
+Star.prototype = Object.create(Collectable.prototype);
+Star.prototype.constructor = Star;
+
+// This function is called when a star is collected
+Star.prototype.collect = function() {
+	allEnemies.forEach(function(enemy) {
+		enemy.reset();
+	});
+	this.reset(false);
+};
+
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
@@ -319,7 +340,8 @@ var numBugs = 2;
 
 // Modify the proportion/likelihood of each collectable appearing
 var numHearts = 1;
-var numGems = 6;
+var numStars = 1;
+var numGems = 5;
 var numSuperGems = 2;
 var numHyperGems = 1;
 

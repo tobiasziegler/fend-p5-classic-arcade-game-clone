@@ -256,6 +256,7 @@ var Engine = (function(global) {
 		initCollectables('supergem', numSuperGems);
 		initCollectables('hypergem', numHyperGems);
 		initCollectables('heart', numHearts);
+		initCollectables('star', numStars);
 	}
 
 	function initCollectables(obj, num) {
@@ -272,6 +273,9 @@ var Engine = (function(global) {
 					break;
 				case 'heart':
 					allCollectables.push(new Heart());
+					break;
+				case 'star':
+					allCollectables.push(new Star());
 					break;
 			}
 		}
@@ -327,7 +331,8 @@ var Engine = (function(global) {
 		'images/Gem Blue.png',
 		'images/Gem Green.png',
 		'images/Gem Orange.png',
-		'images/Heart.png'
+		'images/Heart.png',
+		'images/Star.png'
 	]);
 	Resources.onReady(init);
 
