@@ -134,6 +134,11 @@ Collectable.prototype.collect = function() {
 	this.reset(false);
 };
 
+// This function is called when the object is destroyed by an enemy
+Collectable.prototype.destroy = function() {
+	this.reset(false);
+};
+
 // Gems that provide a score bonus when collected
 var Gem = function() {
 	// Set the initial values through the Collectable and Entity constructors

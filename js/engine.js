@@ -130,6 +130,14 @@ var Engine = (function(global) {
 			collectable.collect();
 			player.displayScoreboard();
 		}
+
+		// Test for collisions between an enemy and a collectable
+		for (var i = 0; i < allEnemies.length; i++) {
+			var destroyed = collisionTests(allEnemies[i], allCollectables);
+			if (destroyed) {
+				destroyed.destroy();
+			}
+		}
 	}
 
 	// Detect whether an object and any of the objects in an array have
