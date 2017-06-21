@@ -313,6 +313,10 @@ var allCollectables = [];
 var player;
 
 // Game configuration variables - changing these will modify the gameplay
+
+// Set the number of bugs spawned onto each row
+var numBugs = 2;
+
 // Modify the proportion/likelihood of each collectable appearing
 var numHearts = 1;
 var numGems = 6;
