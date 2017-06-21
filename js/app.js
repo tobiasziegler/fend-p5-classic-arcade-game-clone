@@ -140,11 +140,12 @@ Collectable.prototype.destroy = function() {
 };
 
 // Gems that provide a score bonus when collected
-var Gem = function() {
+var Gem = function(sprite) {
+	var defaultSprite = 'images/Gem Blue.png';
 	// Set the initial values through the Collectable and Entity constructors
 	Collectable.call(
 		this,
-		'images/Gem Blue.png'
+		sprite ? sprite : defaultSprite
 	);
 };
 
@@ -155,6 +156,26 @@ Gem.prototype.constructor = Gem;
 // This function is called when a gem is collected
 Gem.prototype.collect = function() {
 	player.score += 10;
+	this.reset(false);
+};
+
+// SuperGems that provide a bigger score bonus when collected
+var SuperGem = function() {
+	// Set the initial values through the Gem, Collectable and Entity
+	// constructors
+	Gem.call(
+		this,
+		'images/Gem Orange.png'
+	);
+};
+
+// SuperGem is a subclass of the Gem superclass
+SuperGem.prototype = Object.create(Collectable.prototype);
+SuperGem.prototype.constructor = SuperGem;
+
+// This function is called when a super gem is collected
+SuperGem.prototype.collect = function() {
+	player.score += 50;
 	this.reset(false);
 };
 

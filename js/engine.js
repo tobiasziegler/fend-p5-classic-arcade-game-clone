@@ -253,6 +253,7 @@ var Engine = (function(global) {
 		// Clear the collectables array and add fresh items
 		allCollectables = [];
 		allCollectables.push(new Gem());
+		allCollectables.push(new SuperGem());
 		allCollectables.push(new Heart());
 	}
 
@@ -304,6 +305,7 @@ var Engine = (function(global) {
 		'images/enemy-bug.png',
 		'images/char-cat-girl.png',
 		'images/Gem Blue.png',
+		'images/Gem Orange.png',
 		'images/Heart.png'
 	]);
 	Resources.onReady(init);
