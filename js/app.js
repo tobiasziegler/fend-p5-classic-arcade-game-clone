@@ -210,29 +210,18 @@ Player.prototype.reset = function() {
 
 // Update the player's position, required method for game
 Player.prototype.update = function() {
-	var collectable;
-
 	// Check whether the player has reached the water
 	if (this.y < 0) {
 		this.score += 100;
 		this.reset();
 		this.displayScoreboard();
 	}
+};
 
-	// Check whether the player has collided with an enemy
-	if (this.checkCollisions(allEnemies)) {
-		this.lives--;
-		this.reset();
-		this.displayScoreboard();
-	}
-
-	// Check whether the player has reached a collectable
-	collectable = this.checkCollisions(allCollectables);
-
-	if (collectable) {
-		collectable.collect();
-		this.displayScoreboard();
-	}
+Player.prototype.loseLife = function() {
+	this.lives--;
+	this.reset();
+	this.displayScoreboard();
 };
 
 // Update the on-screen display of score and lives left
@@ -265,37 +254,6 @@ Player.prototype.handleInput = function(key) {
 				this.y += 82;
 			}
 			break;
-	}
-};
-
-// Detect whether the player and any of the objects in an array have collided.
-// Returns the object if there has been a collision, or false otherwise.
-Player.prototype.checkCollisions = function(objs) {
-	for (i = 0; i < objs.length; i++) {
-		if (this.checkCollision(this, objs[i])) {
-			return objs[i];
-		}
-	}
-	return false;
-};
-
-// Detect whether the player and a specified collectable have collided.
-Player.prototype.checkCollectableCollision = function(obj) {
-	return this.checkCollision(this, obj);
-};
-
-// Test for object collision using an axis-aligned bounding box algorithm.
-// Returns true if a collision between the two objects is detected.
-Player.prototype.checkCollision = function(obj1, obj2) {
-	if (
-		obj1.x < obj2.x + obj2.width &&
-		obj1.x + obj1.width > obj2.x &&
-		obj1.y < obj2.y + obj2.height &&
-		obj1.y + obj1.height > obj2.y
-	) {
-		return obj2;
-	} else {
-		return false;
 	}
 };
 

@@ -90,7 +90,7 @@ var Engine = (function(global) {
 	 */
 	function update(dt) {
 		updateEntities(dt);
-		// checkCollisions();
+		checkCollisions();
 	}
 
 	/* This is called by the update function and loops through all of the
@@ -112,6 +112,50 @@ var Engine = (function(global) {
 			})) {
 			var item = Math.floor(Math.random() * allCollectables.length);
 			allCollectables[item].reset(true);
+		}
+	}
+
+	/* Check for collisions and call the relevant functions if any are found.
+	 */
+	function checkCollisions() {
+		// Test for collisions between player and an enemy
+		var enemy = collisionTests(player, allEnemies);
+		if (enemy) {
+			player.loseLife();
+		}
+
+		// Test for collisions between player and a collectable
+		var collectable = collisionTests(player, allCollectables);
+		if (collectable) {
+			collectable.collect();
+			player.displayScoreboard();
+		}
+	}
+
+	// Detect whether an object and any of the objects in an array have
+	// collided. Returns the object if there has been a collision, or false if
+	// no collisions were found.
+	function collisionTests(obj, arr) {
+		for (i = 0; i < arr.length; i++) {
+			if (isCollision(obj, arr[i])) {
+				return arr[i];
+			}
+		}
+		return false;
+	}
+
+	// Test for object collision using an axis-aligned bounding box algorithm.
+	// Returns true if a collision between the two objects is detected.
+	function isCollision(obj1, obj2) {
+		if (
+			obj1.x < obj2.x + obj2.width &&
+			obj1.x + obj1.width > obj2.x &&
+			obj1.y < obj2.y + obj2.height &&
+			obj1.y + obj1.height > obj2.y
+		) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 
