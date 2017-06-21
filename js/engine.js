@@ -254,6 +254,7 @@ var Engine = (function(global) {
 		allCollectables = [];
 		allCollectables.push(new Gem());
 		allCollectables.push(new SuperGem());
+		allCollectables.push(new HyperGem());
 		allCollectables.push(new Heart());
 	}
 
@@ -305,6 +306,7 @@ var Engine = (function(global) {
 		'images/enemy-bug.png',
 		'images/char-cat-girl.png',
 		'images/Gem Blue.png',
+		'images/Gem Green.png',
 		'images/Gem Orange.png',
 		'images/Heart.png'
 	]);

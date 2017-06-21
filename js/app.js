@@ -165,7 +165,7 @@ var SuperGem = function() {
 	// constructors
 	Gem.call(
 		this,
-		'images/Gem Orange.png'
+		'images/Gem Green.png'
 	);
 };
 
@@ -176,6 +176,26 @@ SuperGem.prototype.constructor = SuperGem;
 // This function is called when a super gem is collected
 SuperGem.prototype.collect = function() {
 	player.score += 50;
+	this.reset(false);
+};
+
+// HyperGems that provide a bigger score bonus when collected
+var HyperGem = function() {
+	// Set the initial values through the Gem, Collectable and Entity
+	// constructors
+	Gem.call(
+		this,
+		'images/Gem Orange.png'
+	);
+};
+
+// HyperGem is a subclass of the Gem superclass
+HyperGem.prototype = Object.create(Collectable.prototype);
+HyperGem.prototype.constructor = HyperGem;
+
+// This function is called when a super gem is collected
+HyperGem.prototype.collect = function() {
+	player.score += 100;
 	this.reset(false);
 };
 
