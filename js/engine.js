@@ -136,7 +136,7 @@ var Engine = (function(global) {
 	// collided. Returns the object if there has been a collision, or false if
 	// no collisions were found.
 	function collisionTests(obj, arr) {
-		for (i = 0; i < arr.length; i++) {
+		for (var i = 0; i < arr.length; i++) {
 			if (isCollision(obj, arr[i])) {
 				return arr[i];
 			}
