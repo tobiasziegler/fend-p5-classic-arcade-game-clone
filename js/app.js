@@ -80,6 +80,7 @@ Enemy.prototype.update = function(dt) {
 
 // Gems that provide a score bonus when collected
 var Collectable = function(sprite) {
+	this.active = true;
 	// Set the initial values through the Entity constructor
 	Entity.call(
 		this,
@@ -96,29 +97,41 @@ var Collectable = function(sprite) {
 Collectable.prototype = Object.create(Entity.prototype);
 Collectable.prototype.constructor = Collectable;
 
-// Calculate a random column position for the gem
+// Calculate a random column position for an active item, or position an
+// inactive item off-canvas
 Collectable.prototype.calcX = function() {
-	var col = Math.floor(Math.random() * 5);
-	var x = 0 + (col * 101);
-	return x;
+	if (this.active) {
+		var col = Math.floor(Math.random() * 5);
+		var x = 0 + (col * 101);
+		return x;
+	} else {
+		return 600;
+	}
 };
 
-// Calculate a random row position for the gem
+// Calculate a random row position for an active item, or position an inactive
+// item off-canvas
 Collectable.prototype.calcY = function() {
-	var row = Math.floor(Math.random() * 4);
-	var y = 65 + (row * 82);
-	return y;
+	if (this.active) {
+		var row = Math.floor(Math.random() * 4);
+		var y = 65 + (row * 82);
+		return y;
+	} else {
+		return 0;
+	}
 };
 
-// Reset the gem to a new random position
-Collectable.prototype.reset = function() {
+// Reset an active item to a new random position, or position an inactive
+// item off-canvas
+Collectable.prototype.reset = function(active) {
+	this.active = active;
 	this.x = this.calcX();
 	this.y = this.calcY();
 };
 
 // This function is called when the object is collected by the player
 Collectable.prototype.collect = function() {
-	this.reset();
+	this.reset(true);
 };
 
 // Gems that provide a score bonus when collected
@@ -137,7 +150,7 @@ Gem.prototype.constructor = Gem;
 // This function is called when a gem is collected
 Gem.prototype.collect = function() {
 	player.score += 10;
-	this.reset();
+	this.reset(true);
 };
 
 // Hearts that provide an extra life when collected
@@ -156,7 +169,7 @@ Heart.prototype.constructor = Heart;
 // This function is called when a heart is collected
 Heart.prototype.collect = function() {
 	player.lives++;
-	this.reset();
+	this.reset(true);
 };
 
 // Now write your own player class
