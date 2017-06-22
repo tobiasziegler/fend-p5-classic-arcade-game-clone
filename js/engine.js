@@ -60,6 +60,10 @@ var Engine = (function(global) {
 
 		// Check whether the game has ended
 		if (player.lives === 0) {
+			$('#gameover-text').html(
+				'<p>Bad luck. You\'ve run out of lives!<p>' +
+				'<p>Your final score was ' + player.score + ' points.'
+			);
 			$('#gameover-dialog').dialog('open');
 		} else {
 			/* Use the browser's requestAnimationFrame function to call this
@@ -300,6 +304,7 @@ var Engine = (function(global) {
 					$('#difficulty-dialog').dialog('open');
 				}
 			}],
+			width: 400,
 			modal: true
 		});
 
@@ -343,6 +348,7 @@ var Engine = (function(global) {
 					text: 'Play Again',
 					click: function() {
 						$(this).dialog('close');
+						$('#gameover-text').html('');
 						init();
 					}
 				},
@@ -350,6 +356,7 @@ var Engine = (function(global) {
 					text: 'Adjust Difficulty',
 					click: function() {
 						$(this).dialog('close');
+						$('#gameover-text').html('');
 						$('#difficulty-dialog').dialog('open');
 					}
 				}
