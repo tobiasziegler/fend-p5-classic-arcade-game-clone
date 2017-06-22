@@ -290,30 +290,70 @@ var Engine = (function(global) {
 			autoOpen: false
 		});
 
-		// Configure the character selection dialog
+		// Configure the start game dialog
 		$('#start-dialog').dialog({
 			dialogClass: 'no-close',
 			buttons: [{
 				text: 'Begin the Game',
 				click: function() {
 					$(this).dialog('close');
-					gamePaused = false;
-					init();
+					$('#difficulty-dialog').dialog('open');
 				}
 			}],
 			modal: true
+		});
+
+		// Configure the difficulty selection dialog
+		$('#difficulty-dialog').dialog({
+			dialogClass: 'no-close',
+			buttons: [{
+					text: 'Easy',
+					click: function() {
+						$(this).dialog('close');
+						console.log('easy');
+						gamePaused = false;
+						init();
+					}
+				},
+				{
+					text: 'Moderate',
+					click: function() {
+						$(this).dialog('close');
+						console.log('moderate');
+						gamePaused = false;
+						init();
+					}
+				},
+				{
+					text: 'Hard',
+					click: function() {
+						$(this).dialog('close');
+						console.log('hard');
+						gamePaused = false;
+						init();
+					}
+				}
+			]
 		});
 
 		// Configure the Game Over dialog
 		$('#gameover-dialog').dialog({
 			dialogClass: 'no-close',
 			buttons: [{
-				text: 'Restart',
-				click: function() {
-					$(this).dialog('close');
-					init();
+					text: 'Play Again',
+					click: function() {
+						$(this).dialog('close');
+						init();
+					}
+				},
+				{
+					text: 'Adjust Difficulty',
+					click: function() {
+						$(this).dialog('close');
+						$('#difficulty-dialog').dialog('open');
+					}
 				}
-			}],
+			],
 			modal: true
 		});
 	}
