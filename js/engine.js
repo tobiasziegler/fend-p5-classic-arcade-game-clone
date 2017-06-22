@@ -241,10 +241,10 @@ var Engine = (function(global) {
 
 		player = new Player();
 
-		// Clear the enemies array and add fresh enemies - two for each row
-		// between the start and end points
+		// Clear the enemies array and add fresh enemies - use the configuration
+		// variable to set how many to create per row.
 		allEnemies.length = 0;
-		for (var j = 0; j < numBugs; j++) {
+		for (var j = 0; j < numEnemies; j++) {
 			for (var i = 0; i < 4; i++) {
 				allEnemies.push(new Enemy(i));
 			}
@@ -310,7 +310,7 @@ var Engine = (function(global) {
 					text: 'Easy',
 					click: function() {
 						$(this).dialog('close');
-						console.log('easy');
+						setDifficulty('easy');
 						gamePaused = false;
 						init();
 					}
@@ -319,7 +319,7 @@ var Engine = (function(global) {
 					text: 'Moderate',
 					click: function() {
 						$(this).dialog('close');
-						console.log('moderate');
+						setDifficulty('moderate');
 						gamePaused = false;
 						init();
 					}
@@ -328,7 +328,7 @@ var Engine = (function(global) {
 					text: 'Hard',
 					click: function() {
 						$(this).dialog('close');
-						console.log('hard');
+						setDifficulty('hard');
 						gamePaused = false;
 						init();
 					}
@@ -356,6 +356,27 @@ var Engine = (function(global) {
 			],
 			modal: true
 		});
+	}
+
+	// Adjust game configuration variables based on difficulty level.
+	function setDifficulty(diff) {
+		switch (diff) {
+			case 'easy':
+				numEnemies = 2;
+				enemySpeedBase = 50;
+				enemySpeedRange = 100;
+				break;
+			case 'moderate':
+				numEnemies = 2;
+				enemySpeedBase = 75;
+				enemySpeedRange = 125;
+				break;
+			case 'hard':
+				numEnemies = 3;
+				enemySpeedBase = 75;
+				enemySpeedRange = 125;
+				break;
+		}
 	}
 
 	/* Go ahead and load all of the images we know we're going to need to

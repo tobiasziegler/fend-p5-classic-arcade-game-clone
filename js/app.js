@@ -53,7 +53,7 @@ Enemy.prototype.calcY = function(row) {
 
 // Calculate a random speed for the Enemy's movement
 Enemy.prototype.calcSpeed = function() {
-	var speed = 50 + Math.floor(Math.random() * 100);
+	var speed = enemySpeedBase + Math.floor(Math.random() * enemySpeedRange);
 	return speed;
 };
 
@@ -335,8 +335,12 @@ var player;
 
 // Game configuration variables - changing these will modify the gameplay
 
-// Set the number of bugs spawned onto each row
-var numBugs = 2;
+// Set the number of enemies spawned onto each row
+var numEnemies = 2;
+
+// Set the minimum speed assigned to enemies and the range from min to max
+var enemySpeedBase = 50;
+var enemySpeedRange = 100;
 
 // Modify the proportion/likelihood of each collectable appearing
 var numHearts = 1;
