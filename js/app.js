@@ -78,7 +78,7 @@ Enemy.prototype.update = function(dt) {
 	}
 };
 
-// Gems that provide a score bonus when collected
+// Collectable items that can be collected by the player or destroyed by enemies
 var Collectable = function(sprite) {
 	this.active = false;
 	// Set the initial values through the Entity constructor
@@ -342,7 +342,7 @@ var numEnemies = 2;
 var enemySpeedBase = 50;
 var enemySpeedRange = 100;
 
-// Modify the proportion/likelihood of each collectable appearing
+// Set the proportion/likelihood of each collectable
 var numHearts = 1;
 var numStars = 1;
 var numGems = 5;

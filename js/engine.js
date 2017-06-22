@@ -84,13 +84,8 @@ var Engine = (function(global) {
 	}
 
 	/* This function is called by main (our game loop) and itself calls all
-	 * of the functions which may need to update entity's data. Based on how
-	 * you implement your collision detection (when two entities occupy the
-	 * same space, for instance when your character should die), you may find
-	 * the need to add an additional function call here. For now, we've left
-	 * it commented out - you may or may not want to implement this
-	 * functionality this way (you could just implement collision detection
-	 * on the entities themselves within your app.js file).
+	 * of the functions which may need to update entity's data. It then checks
+	 * for collisions betwen any of the entities.
 	 */
 	function update(dt) {
 		updateEntities(dt);
@@ -145,8 +140,8 @@ var Engine = (function(global) {
 	}
 
 	// Detect whether an object and any of the objects in an array have
-	// collided. Returns the object if there has been a collision, or false if
-	// no collisions were found.
+	// collided. Returns the relevant object out of the array if there has been
+	// a collision, or false if no collisions were found.
 	function collisionTests(obj, arr) {
 		for (var i = 0; i < arr.length; i++) {
 			if (isCollision(obj, arr[i])) {
@@ -233,9 +228,9 @@ var Engine = (function(global) {
 		player.render();
 	}
 
-	/* This function does nothing but it could have been a good place to
-	 * handle game reset states - maybe a new game menu or a game over screen
-	 * those sorts of things. It's only called once by the init() method.
+	/* This function handles game reset states. It displays a new game menu when
+	 * the game first loads, and at the start of each game it initialises all of
+	 * the game entity objects.
 	 */
 	function reset() {
 		initDialogs();
@@ -263,6 +258,7 @@ var Engine = (function(global) {
 		initCollectables('star', numStars);
 	}
 
+	// Add the specified number of the specified collectable into the array
 	function initCollectables(obj, num) {
 		for (var i = 0; i < num; i++) {
 			switch (obj) {
